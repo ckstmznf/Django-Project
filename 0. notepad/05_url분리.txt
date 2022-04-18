@@ -1,0 +1,24 @@
+URL 분리!! 
+
+해당 App 과 관련된 URL 을 App 에서 관리하겠다!! 
+원래 config.urls 에서 모든 url 을 views 로 연결 시켜주었다! 
+config.urls 에서 모든 url 을 통제한다면, app 삭제할때도 번거롭고, 트래픽 처리에 비효율적!
+따라서, config.urls 를 중간다리 역할로 만들어버리는 방법!!
+
+=========================================================
+from django.urls import include  
+
+urlpatterns = [
+	path('해당app/', include('해당app.urls'))
+]
+=========================================================
+
+다른 App 에 추가경로 정보있으니까 거기로가라!!! 
+☆ 하지만, 기본적으로 해당app 에는 urls.py 없어요!!
+파일을 만들어주셔야합니다. 내용은 config.py 가 기존에 했던 일을 해주시면됩니다.
+
+[ 기존방식 ]  request > config.urls > Apps.views
+[ url 분리 ] request > config.urls > Apps.urls > Apps.views 
+
+
+

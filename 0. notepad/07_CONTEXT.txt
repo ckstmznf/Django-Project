@@ -1,0 +1,45 @@
+
+1. HTML 에 데이터 전달
+render 의 context 인자(Dictionary 형)에 실어주면 됨!!
+==================================================
+ def index(request):
+     a = 10
+     b = range(10)
+     context = {
+        'con1' : a,
+ 	'con2' : b
+     }
+     return render(request, "board/index.html", context)
+==================================================
+> index.html 에서 con1, con2 변수로 사용할 수 있음!!
+데이터를 보냈으니 이 변수를 활용해서 HTML 문서에 나타낼 수 있어야하죠?
+
+
+
+
+2. Template Tag : HTML 문서에서 python 구문을 사용할 수 있도록!
+ - {% %} : 구문(if, for)      > { % 는 꼭 붙여서 표기!!
+ - {{ }} : 객체나 변수, 함수
+
+※ 이 때, 주의할 점은 Template Tag 에서는 칸 띄우기 개념이 없는
+HTML 문서에 표현된다. 따라서 종속문장의 구분이 없기 때문에 매 구문 마다
+{% endfor %} , {% endif %} 와 같은 마무리를 지어주지 않으면 안된다.
+
+ex) 
+if 1:           >       {% if 1 %}
+   print(1)             	<h1> 1 </h1> 
+   if 2:			{% if 2 %}
+       print(2)				<h1> 2 </h1>   
+else:				{% endif %}
+   print(3) 		{% else %}
+				<h1> 3 </h1>
+			{% endif}
+
+ 
+또한, for 문의 종속문장에서 주로 사용되는 표현(변수처럼 사용)에 대해서 정리해보자
+forloop.counter      : for 문 안의 현재반복 횟수를 저장 (start value : 1)
+forloop.counter0     : for 문 안의 현재반복 횟수를 저장 (start value : 0)
+forloop.first	     : 첫번째 반복에서만 True
+forloop.last  	     : 마지막 반복에서만 True
+
+

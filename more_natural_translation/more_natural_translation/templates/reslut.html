@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        .box {
+            display : flex;
+            flex-direction: column;
+        }
+        p {
+            background-color: rgb(78, 104, 255);
+            color: white;
+            padding: 20px 15px;
+            font-size: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+        }
+
+        h2{
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>reslut</h1> -->
+
+    <h2>입력한 텍스트</h2>
+    <div class="box">
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p> -->
+        {% for i in text %}
+            <p>{{i}}</p>
+        {% endfor %}
+    </div>
+    
+    <h2>{{source_lang}} ➡ {{target_lang}}</h2>
+    <div class="box">
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p> -->
+        {% for i in direct.text %}
+            <p>{{i}}</p>
+        {% endfor %}
+    </div>
+    
+    <h2>{{source_lang}} ➡ 일본어 ➡ {{target_lang}}</h2>
+    <div class="box">
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quia vero rem exercitationem eos non, doloribus obcaecati eveniet cumque, quis quo dolores reprehenderit hic suscipit expedita, harum earum quaerat quam!</p> -->
+        {% for i in indirect.text %}
+            <p>{{i}}</p>
+        {% endfor %}
+    </div>
+
+    <button onclick="location.href='../'">다시 하기</button>
+</body>
+</html>

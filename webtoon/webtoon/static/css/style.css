@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+}
+
+a {
+    color : black;
+    text-decoration: unset;
+}
+
+ul {
+    list-style: none;
+}

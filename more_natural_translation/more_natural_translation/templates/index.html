@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        form {
+            align-items: center;
+        }
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        textarea {
+            display: block;
+            width: 100%; height: 50vh;
+            resize: none;
+            font-size: 20px;
+        }
+        .submit {
+            background-color: rgb(78, 104, 255);
+            color : white;
+            border: 1px solid gray;
+            display: block;
+            width: 100%; 
+            font-size: 30px;
+            padding: 30px 0;
+        }
+
+        .note h2{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .note p{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>더 자세한 번역</h1>
+    <div class="note">
+        <h2>사용법</h2>
+        <p>
+            번역하고 싶은 텍스트를 입력하고 번역 버튼만 누루세요.<br>
+            그러면 자동으로 번역이 됩니다.
+        </p>
+
+        <h2>번역 방법</h2>
+        <p>
+            이 서비스는 특이한 번역 방법을 사용합니다.<br>
+            한국어를 일본어로 번역한 일본어를 다시 영어로 번역해줍니다.<br>
+            이러면 번역이 더 자세하다고 하더라고요...;;
+        </p>
+    </div> -->
+    <form action="result/" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="sL">한국어 ➡ 영어</label>
+            <input type="radio" name="sL" id="sL" value="ko" checked>
+        </div>
+        
+        <div>
+            <label for="sL">영어 ➡ 한국어</label>
+            <input type="radio" name="sL" id="sL" value="en">
+        </div>
+
+        <textarea name="text" id="text" cols="30" rows="10" placeholder="번역할 텍스트를 입력해주세요."></textarea>
+        <input type="submit" value="번역" class="submit">
+    </form>
+</body>
+</html>

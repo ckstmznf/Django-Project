@@ -1,0 +1,94 @@
+MTV 모델에서 "M" 을 다뤄보자
+ 
+1. ORM
+
+============================================================
+※ ORM 에 대한 이해
+원래 서버에서 DB 를 다루기 위해서는 Database 언어를 따로 다뤄야하지만,
+이를 object-relation 의 Mapping 으로 처리하는 것!!
+따라서, class 를 알아야한다!!
+
+A Class 는 "A라면 가지고 있어야하는 속성과 특징을 변수와 함수 즉, 코드 집합으로 묶어놓은 집합" 이다!
+☆ 객체1 = A()  
+위와 같은 방식으로 객체를 생성하며, 이 객체1을 "A Class 의 인스턴스다" 라고 표현하기도 한다!
+=============================================================
+A 라는 테이블에서 각각의 필드를 "A 테이블이라면 가지고 있어야하는 속성" 으로 바라보고,
+A 테이블에 있는 데이터들을 각각 "A Class 의 인스턴스" 로 규정하고 코딩하면 된다!!
+
+
+
+2. TABLE 만들기 (models.py 에 설정) 
+num, name 을 가지고 있는 Student 테이블을 만들자 
+   ( => num, name 을 가지고 있는 Student Class 을 만들자)
+=========================================================
+class Student(models.Model):
+    num = models.IntegerField()
+    name = models.CharField(max_length=30)
+    comment = models.TextField()
+==========================================================
+Table 을 이제 올려줘야한다!! (migration : 데이터모델을 바꾸는 것! 한마디로 DB 정보가 바뀌는것)
+
+
+3. DB 등록하기
+
+두 가지 핵심 명령어를 살펴보자
+
+ - python manage.py makemigrations
+   > settings.py 의 INSTALLED_APPS 에 있는 내용들을 점검하여 DB와 관련하여 변화가 일어났는지 체크
+   > 변화가 있다면 DB 에 올릴 준비를 해주는 파일인 0001 과 같은 파일이 생성된다.
+  따라서, 위 명령어에서 등록된 Table 을 DB 에 올리려면 settings.py 에 해당 App(st) 을 등록해주어야함.
+  'st.apps.StConfig' 등록!
+
+ - python manage.py migrate
+   > makemigrations 가 있는 상태에서 실제로 DB 를 등록하는 명령어!!
+
+
+4. 직접 데이터 추가하기
+
+ - python manage.py shell
+   > 가상환경을 토대로 python shell 실행 ( ※주의※  >>> 가 있는 곳이 shell 입니다!! )
+==========================================================
+ from st.models import Student
+
+ st1 = Student(num=100, name="han", comment="착함")
+ st1.save()
+ st2 = Student(num=200, name="kim", comment="모험심이 많음")
+ st2.save()
+ st3 = Student(num=300, name="kang", comment="오늘은 펜트하우스 마지막방송")
+ st4.save()
+==========================================================
+위와 같이 테이블에 한 줄(이걸 레코드라고 하기도함) 추가하려면, Student 의 인스턴스 생성 후 save 해주면됨
+
+
+
+5. 데이터 조회하기
+
+ all_st = Student.objects.all()
+ > Student 모든 데이터들을 가져옴! (Student 의 인스턴스들의 리스트반환)
+ > 따라서 for 문을 돌리면 i 에는 Student 의 인스턴스가 들어감
+
+ for i in all_st:
+   print(i.num, i.name, i.comment)
+
+ a = Student.objects.get(name="han")
+ > 특정 인스턴스 검색 
+ print(a.num, a.name, a.comment)
+ 
+
+
+
+6. admin 사이트 테이블 등록
+
+각 app 에 있는 admin.py 는 해당 app 에 대한 내용을 "관리 페이지" 에 등록할 때 작성하는 파일이다.
+대표적으로 테이블을 등록할 수 있다. 
+========================================
+from .models import [ Table 명 ]
+admin.site.register(Table)
+========================================
+레코드 생성을 좀 더 편리하게 할 수 있다.
+
+
+
+7. 관리자 계정 생성
+ ■ python manage.py createsuperuser
+ 해당 계정으로 관리자 사이트에 접근이 가능하다.

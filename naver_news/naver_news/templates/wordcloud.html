@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ol>
+        {% for d in list %}
+            <li>
+                <!-- <img src="../static/img/{{d}}.png" alt="{{d}}"> -->
+                <img src="../../{{d}}.png" alt="{{d}}">
+                <b>{{d}}</b>에 대한 워드클라우드 입니다.
+            </li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+■ 파일 업로드  
+ pip install pillow 를 꼭 해줄것! (사진업로드 다룰예정이기때문에) 
+
+ - 파일에 접근하는 기능 또한 urls.py 로 접근이 가능해야 가능한 기능이다. (유저정보에 사진을추가)
+===================================================================
+class User(AbstractUser):
+     userpic = models.ImageField(upload_to="....")
+     ...
+===================================================================
+upload 되는 경로를 %y(년), %m(월), %d(일) 와 같은 지시자를 사용할 수 있다.
+
+
+- 사진관련 설정은 상당히 많은편이다
+1) settings.py
+===================================================================
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR/'media'
+===================================================================
+
+2) config.urls
+===================================================================
+from django.conf.urls.static import static
+urlpatterns=[
+    .....
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+===================================================================
+※ static 에 커서를 올려보면 코드가 그대로 나와있다.
+즉, /media/ 관련 URL 을 docuemtn_root (BASE_DIR/'media') 에 있는 파일로 띄워준다는 의미!
+
+■ 바이너리 파일 전송시 주의사항
+
+1) form 태그의 enctype 을 multipart/form-data 로 설정
+2) views.py 에서 request.FILES 에 들어있음
+
+
+

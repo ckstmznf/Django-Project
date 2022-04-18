@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main {
+            border-collapse: collapse;
+        }
+
+        .webtoon-list {
+            list-style: none;
+        }
+
+        .webtoon-list:nth-child(1){
+            background-color: khaki;
+        }
+
+        .webtoon-list td{
+            text-align: center;
+            /* font-size : 15px; */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NAVER WEBTOON DOWNLOAD</h1>
+    <table class="main" border="1">
+        {% for d1 in data %}
+            <tr class="{{n}} webtoon-list">
+                {% for d2 in d1 %}
+                    <!-- <td><a href="https://comic.naver.com/webtoon/list.nhn?titleId={{d2.code}}">{{d2.title}}</a></td> -->
+                    <td><a href="/webtoon/{{d2.code}}">{{d2.title}}</a></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

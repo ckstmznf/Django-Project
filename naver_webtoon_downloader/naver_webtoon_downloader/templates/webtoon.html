@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>webtoon</title>
+    <style>
+        #title {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{data.title}}</h1>
+    <button onclick='window.open("https://comic.naver.com/webtoon/list.nhn?titleId={{data.code}}")'>웹툰 보기</button>
+    <a href="/"><button>메인으로</button></a>
+    <button onclick="location.href='../download/all/{{data.code}}'">전체 다운로드</button>
+    <!-- 입력 말고 선택으로 변경 -->
+    <!-- <form action="/download/choice/{{data.code}}" method="get">
+        <input type="text" name="title" id="title" value="{{data.title}}">
+        <input type="text" name="no" id="no">
+        <button type="submit">선택 다운로드</button>
+    </form> -->
+    <form action="../download/choice/{{data.code}}" method="get">
+        <button type="submit">선택목록 다운로드</button>
+        <table border="1">
+            {% for i in ep_list %}
+            <tr>
+                <!-- <td>{{i.no}}화</td> -->
+                <td>{{i.title}}</td>
+                <td><input type="checkbox" name="no" value="{{i.no}}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+
+</html>

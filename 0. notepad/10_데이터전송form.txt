@@ -1,0 +1,48 @@
+■ 데이터 전송방식
+ 1) GET : URL 로 데이터 전송 
+   URL 의 특수기호와 역할
+     ? : 데이터 전송의 시작
+     & : 데이터 연결
+   ex)  ?name=han&subject=python&where=kgitbank
+   : name, subject, where 라는 데이터가 GET 방식으로 전송되고 그 값은 각각 'han', 'python', 'kgitbank'임
+
+   특징 : URL 노출이 되기 때문에 민감한 데이터 전송에는 부적절하다 (로그인)
+           URL 길이제한이 있기 때문에 다량의 정보전송에는 부적저하다 (게시판)
+
+ 
+  2) POST : HTTP Body 에 데이터를 숨겨서 전송
+    ※ 하지만, POST 로 전송된다고 다 좋은 것은 아님! 대형 서비스를 지원하기에는 Packet 을 까서 정보를 확인해야하기 때문에 리소스를 그만큼 잡아먹을 수 있음 
+
+
+■ 데이터 전송 태그 form
+   form 태그의 주요속성 : method , action
+   1) method : 어떻게 데이터를 전송할지
+      ※ 만약 지정해주지 않으면 GET 방식으로 전송된다. (GET, POST, PUT, DELETE, UPDATE ...)
+   2) action : 어디로 데이터를 전송할지
+      ※ 만약 지정해주지 않으면 현재 페이지에 전송을 한다.
+	ex) <form method="POST" action="A">
+	   : A 에다가 POST 방식으로 데이터를 전송하겠다.
+
+
+■ form 태그의 POST 요청
+  이 때, Django 에서는 csrf 공격을 감지하여 아래와 같은 설정을 해주지 않으면 에러를 일으킵니다. 
+  ※ CSRF (Cross Site Request Forgery)
+  사용자의 요청을 가로채서 해커가 자신의 요청으로 바꿔치기하는 해킹공격기법
+   > csrf_token 을 같이 전달(form 안에 있어야함) 해줘야 요청으로 인정!
+
+
+■ form 태그 주의사항
+ 1) form 태그 안에 있는 정보들만 넘어감!!
+ 2) name 속성을 주지않은 정보들은 넘어가지 않는다.
+==========================================================
+<form method="post">
+	subject <input type="text" name="sub">
+	writer <input type="text">
+	<button>submit</button>
+</form>
+content <input type="text" name="con">
+==========================================================
+위의 코드의 경우 subject 만 넘어간다. 
+ - writer 가 넘어가지 않는 이유는 name 을 주지 않았기 때문이고, content 가 넘어가지 않는 이유는
+   form 태그에 쌓여있는 정보가 아니기 때문이다.
+

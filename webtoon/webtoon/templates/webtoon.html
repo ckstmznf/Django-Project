@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webtoon</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <h1 class="title">네이버 웹툰 목록</h1>
+    <div class="main">
+        <ul class="mon">
+            <h2 class="menu">월요일</h2>
+            {% for webtoon in webtoons.mon %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="tue">
+            <h2 class="menu">화요일</h2>
+            {% for webtoon in webtoons.tue %}
+                {% if webtoon.title == "랜덤채팅의 그녀!" %}
+                    <li><a href="https://comic.naver.com{{webtoon.link}}" class="randchat"> {{webtoon.title}}</a></li>
+                {% else %}
+                    <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <ul class="wed">
+            <h2 class="menu">수요일</h2>
+            {% for webtoon in webtoons.wed %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="thu">
+            <h2 class="menu">목요일</h2>
+            {% for webtoon in webtoons.thu %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="fri">
+            <h2 class="menu">금요일</h2>
+            {% for webtoon in webtoons.fri %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="sat">
+            <h2 class="menu">토요일</h2>
+            {% for webtoon in webtoons.sat %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="sun">
+            <h2 class="menu">일요일</h2>
+            {% for webtoon in webtoons.sun %}
+                <li><a href="https://comic.naver.com{{webtoon.link}}"> {{webtoon.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% comment %} {{webtoons}} {% endcomment %}
+</body>
+</html>

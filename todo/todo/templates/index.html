@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="location.href = '/test/'">Test</button>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" id="name">
+        {% for d in data %}
+            <li>{{d.name}} <button onclick="location.href = '/delete?id={{d.id}}'" type="button">X</button></li>
+        {% endfor %}
+    </form>
+</body>
+</html>
